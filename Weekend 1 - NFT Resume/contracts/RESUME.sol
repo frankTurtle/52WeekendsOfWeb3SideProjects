@@ -1455,11 +1455,11 @@ contract Resume is ERC721Enumerable, ReentrancyGuard, Ownable {
 
         parts[8] = '</text><text x="10" y="100" class="base">';
 
-        parts[9] = string( abi.encodePacked("🛠️ ", getTools(tokenId) );
+        parts[9] = string( abi.encodePacked("🛠 ", getTools(tokenId) );
 
         parts[10] = '</text><text x="10" y="120" class="base">';
 
-        parts[11] = string( abi.encodePacked("🏗️ ", getArchitecture(tokenId) );
+        parts[11] = string( abi.encodePacked("📐 ", getArchitecture(tokenId) );
 
         parts[12] = '</text><text x="10" y="140" class="base">';
 
