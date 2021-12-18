@@ -1293,10 +1293,11 @@ contract Resume is ERC721Enumerable, ReentrancyGuard, Ownable {
     
     string[] private employment = [
         "Illuscio Inc.",
-        "Canon U.S.A. Inc."
+        "Canon U.S.A. Inc.",
+        "Entrepreneur"
     ];
     
-    string[] private pronounds = [
+    string[] private pronouns = [
         "he",
         "him",
         "él"
@@ -1365,103 +1366,128 @@ contract Resume is ERC721Enumerable, ReentrancyGuard, Ownable {
         "52 web3 projects each weekend for a year!",
         "1,000lb club 💪"
     ];
+
+    string[] private colors = [
+        "#1BE7FF",
+        "#6EEB83",
+        "#E4FF1A",
+        "#E8AA14",
+        "#D81E5B",
+        "#FF8C42"
+    ]
     
     function random(string memory input) internal pure returns (uint256) {
         return uint256(keccak256(abi.encodePacked(input)));
     }
     
-    function getWeapon(uint256 tokenId) public view returns (string memory) {
-        return pluck(tokenId, "EQUIPMENT", equipment);
+    function getEducation(uint256 tokenId) public view returns (string memory) {
+        return pluck(tokenId, "EDUCATION", education);
     }
     
-    function getChest(uint256 tokenId) public view returns (string memory) {
-        return pluck(tokenId, "TOP", top);
+    function getEmployment(uint256 tokenId) public view returns (string memory) {
+        return pluck(tokenId, "EMPLOYMENT", employment);
     }
     
-    function getHead(uint256 tokenId) public view returns (string memory) {
-        return pluck(tokenId, "HEAD", head);
+    function getPronouns(uint256 tokenId) public view returns (string memory) {
+        return pluck(tokenId, "PRONOUNS", pronouns);
     }
     
-    function getWaist(uint256 tokenId) public view returns (string memory) {
-        return pluck(tokenId, "WAIST", waist);
+    function getCode(uint256 tokenId) public view returns (string memory) {
+        return pluck(tokenId, "CODE", code);
     }
 
-    function getFoot(uint256 tokenId) public view returns (string memory) {
-        return pluck(tokenId, "FOOT", foot);
+    function getTools(uint256 tokenId) public view returns (string memory) {
+        return pluck(tokenId, "TOOLS", tools);
     }
     
-    function getHand(uint256 tokenId) public view returns (string memory) {
-        return pluck(tokenId, "HAND", hand);
+    function getArchitecture(uint256 tokenId) public view returns (string memory) {
+        return pluck(tokenId, "ARCHITECTURE", architecture);
     }
     
-    function getNeck(uint256 tokenId) public view returns (string memory) {
-        return pluck(tokenId, "NECK", necklaces);
+    function getTechCommunities(uint256 tokenId) public view returns (string memory) {
+        return pluck(tokenId, "TECH COMMUNITIES", techCommunities);
     }
     
-    function getRing(uint256 tokenId) public view returns (string memory) {
-        return pluck(tokenId, "RING", rings);
+    function getFounder(uint256 tokenId) public view returns (string memory) {
+        return pluck(tokenId, "FOUNDER", founder);
+    }
+
+    function getLifeCommunities(uint256 tokenId) public view returns (string memory) {
+        return pluck(tokenId, "LIFE COMMUNITIES", lifeCommunities);
+    }
+
+    function getCerts(uint256 tokenId) public view returns (string memory) {
+        return pluck(tokenId, "CERTS", certs);
+    }
+
+    function getChallenges(uint256 tokenId) public view returns (string memory) {
+        return pluck(tokenId, "CHALLENGES", challenges);
+    }
+
+    function getColor(uint256 tokenId) public view returns (string memory) {
+        return pluck(tokenId, "COLOR", colors);
     }
     
     function pluck(uint256 tokenId, string memory keyPrefix, string[] memory sourceArray) internal view returns (string memory) {
         uint256 rand = random(string(abi.encodePacked(keyPrefix, toString(tokenId))));
-        string memory output = sourceArray[rand % sourceArray.length];
-        uint256 greatness = rand % 51;
-        if (greatness > 40) {
-            output = string(abi.encodePacked(output, " ", suffixes[rand % suffixes.length]));
-        }
-        if (greatness >= 49) {
-            string[2] memory name;
-            name[0] = namePrefixes[rand % namePrefixes.length];
-            name[1] = nameSuffixes[rand % nameSuffixes.length];
-            if (greatness == 49) {
-                output = string(abi.encodePacked('"', name[0], ' ', name[1], '" ', output));
-            } else {
-                output = string(abi.encodePacked('"', name[0], ' ', name[1], '" ', output, " +1"));
-            }
-        }
-        return output;
+        return sourceArray[rand % sourceArray.length];
     }
 
     function tokenURI(uint256 tokenId) override public view returns (string memory) {
-        string[17] memory parts;
-        parts[0] = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { fill: white; font-family: monospace; font-size: 14px; }</style><rect width="100%" height="100%" fill="#A663CC" /><text x="10" y="20" class="base">';
+        string[22] memory parts;
+        parts[0] = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { fill: white; font-family: monospace; font-size: 14px; }</style><rect width="100%" height="100%" fill="';
+        parts[0] = string( abi.encodePacked(parts[0], getColor(tokenId) );
+        parts[0] = string( abi.encodePacked(parts[0], '" /><text x="10" y="20" class="base">');
 
-        parts[1] = getWeapon(tokenId);
+        parts[1] = string( abi.encodePacked("🎓 ", getEducation(tokenId) );
 
         parts[2] = '</text><text x="10" y="40" class="base">';
 
-        parts[3] = getChest(tokenId);
+        parts[3] = string( abi.encodePacked("💼 ", getEmployment(tokenId) );
 
         parts[4] = '</text><text x="10" y="60" class="base">';
 
-        parts[5] = getHead(tokenId);
+        parts[5] = string( abi.encodePacked("🧔 ", getPronouns(tokenId) );
 
         parts[6] = '</text><text x="10" y="80" class="base">';
 
-        parts[7] = getWaist(tokenId);
+        parts[7] = string( abi.encodePacked("💻 ", getCode(tokenId) );
 
         parts[8] = '</text><text x="10" y="100" class="base">';
 
-        parts[9] = getFoot(tokenId);
+        parts[9] = string( abi.encodePacked("🛠️ ", getTools(tokenId) );
 
         parts[10] = '</text><text x="10" y="120" class="base">';
 
-        parts[11] = getHand(tokenId);
+        parts[11] = string( abi.encodePacked("🏗️ ", getArchitecture(tokenId) );
 
         parts[12] = '</text><text x="10" y="140" class="base">';
 
-        parts[13] = getNeck(tokenId);
+        parts[13] = string( abi.encodePacked("🤖 ", getTechCommunities(tokenId) );
 
         parts[14] = '</text><text x="10" y="160" class="base">';
 
-        parts[15] = getRing(tokenId);
+        parts[15] = string( abi.encodePacked("🐢 ", getFounder(tokenId) );
 
-        parts[16] = '</text></svg>';
+        parts[16] = '</text><text x="10" y="180" class="base">';
+
+        parts[17] = string( abi.encodePacked("💛 ", getLifeCommunities(tokenId) );
+
+        parts[18] = '</text><text x="10" y="200" class="base">';
+
+        parts[19] = string( abi.encodePacked("🏅 ", getCerts(tokenId) );
+
+        parts[20] = '</text><text x="10" y="220" class="base">';
+
+        parts[21] = string( abi.encodePacked("🎯 ", getChallenges(tokenId) );
+
+        parts[22] = '</text></svg>';
 
         string memory output = string(abi.encodePacked(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8]));
         output = string(abi.encodePacked(output, parts[9], parts[10], parts[11], parts[12], parts[13], parts[14], parts[15], parts[16]));
+        output = string(abi.encodePacked(output, parts[17], parts[18], parts[19], parts[20], parts[21], parts[22]));
         
-        string memory json = Base64.encode(bytes(string(abi.encodePacked('{"name": "RESUME #', toString(tokenId), '", "description": "This is the RESUME of frankTurtle.crypto ", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(output)), '"}'))));
+        string memory json = Base64.encode(bytes(string(abi.encodePacked('{"name": "RESUME #', toString(tokenId), '", "description": "This is the RESUME of frankTurtle.crypto 😁", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(output)), '"}'))));
         output = string(abi.encodePacked('data:application/json;base64,', json));
 
         return output;
@@ -1499,7 +1525,7 @@ contract Resume is ERC721Enumerable, ReentrancyGuard, Ownable {
         return string(buffer);
     }
     
-    constructor() ERC721("FIT", "FIT") Ownable() {}
+    constructor() ERC721("FRANK🐢", "FRANK🐢") Ownable() {}
 }
 
 /// [MIT License]
