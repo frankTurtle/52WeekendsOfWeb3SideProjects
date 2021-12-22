@@ -8,7 +8,7 @@ Inspired by https://52wosp.com/ 🚀🦄
 
 ### [Weekend 1: NFT Resume](https://github.com/frankTurtle/52WeekendsOfWeb3SideProjects/tree/main/Weekend%201%20-%20NFT%20Resume)
 
-### Weekend 2: Simple NFT
+### [Weekend 2: Simple NFT](https://github.com/frankTurtle/52WeekendsOfWeb3SideProjects/tree/main/Weekend%202%20-%20Simple%20NFT)
 
 ### Weekend 3: Deploy an NFT
 
