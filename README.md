@@ -10,7 +10,7 @@ Inspired by https://52wosp.com/ 🚀🦄
 
 ### [Weekend 2: Simple NFT](https://github.com/frankTurtle/52WeekendsOfWeb3SideProjects/tree/main/Weekend%202%20-%20Simple%20NFT)
 
-### Weekend 3: Deploy an NFT
+### [Weekend 3: Full Stack](https://github.com/frankTurtle/52WeekendsOfWeb3SideProjects/tree/main/Weekend%203%20-%20Full%20Stack)
 
 ### Weekend 4: Creat an NFT marketplace 👀
 
