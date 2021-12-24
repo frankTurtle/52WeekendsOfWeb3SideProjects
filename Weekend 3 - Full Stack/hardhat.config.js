@@ -24,6 +24,10 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   networks: {
     hardhat: {
       chainId: 1337
+    },
+    ropsten: {
+      url: `${infuraURL}`,
+      accounts: [`${myPrivateKey}`]
     }
   }
 };
